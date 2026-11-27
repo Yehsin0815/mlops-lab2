@@ -41,7 +41,7 @@ Screenshot: screenshots/6-llm-chat.png (isvc READY=True + chat completion respon
 | argocd/application.yaml | Argo CD Application: watches `gitops/` on `main`, auto sync + self heal, namespace `lab2-gitops` |
 | argocd/argocd-commands.ps1 | Install Argo CD, apply the Application, get the admin password |
 
-Flow: install Argo CD, apply the Application, Argo CD creates `sklearn-iris` in `lab2-gitops` (Synced / Healthy). Then `minReplicas` was changed from 1 to 2 in Git only (commit c1bc93a), and Argo CD synced the change automatically with no `kubectl apply`.
+Flow: install Argo CD, apply the Application, Argo CD creates `sklearn-iris` in `lab2-gitops` (Synced / Healthy). Then `minReplicas` was changed from 1 to 2 in Git only, and Argo CD synced the change automatically with no `kubectl apply`.
 
 Server-side diff/apply is enabled so the fields KServe's webhook fills in do not show as OutOfSync.
 
