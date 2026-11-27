@@ -1,0 +1,9 @@
+{
+  "model": "qwen",
+  "messages": [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "What is KServe? Answer in one sentence."}
+  ],
+  "max_tokens": 64,
+  "stream": false
+}

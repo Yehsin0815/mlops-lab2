@@ -1,0 +1,25 @@
+# Bonus 2: Argo CD watches gitops/ on main and keeps namespace lab2-gitops in sync with Git
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sklearn-iris
+  namespace: argocd
+  annotations:
+    # KServe's webhook fills in default fields; server-side diff keeps those from showing as OutOfSync
+    argocd.argoproj.io/compare-options: ServerSideDiff=true
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Yehsin0815/mlops-lab2.git
+    targetRevision: main
+    path: gitops
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: lab2-gitops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

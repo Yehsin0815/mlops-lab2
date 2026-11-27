@@ -1,0 +1,26 @@
+# Bonus 1: serve a small LLM (Qwen2.5-0.5B-Instruct) with the KServe Hugging Face runtime on CPU
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: qwen-llm
+  annotations:
+    # RawDeployment for this model: the large runtime image + model download on a laptop
+    # can take longer than Knative's revision deadline, so skip Knative for the LLM.
+    serving.kserve.io/deploymentMode: RawDeployment
+spec:
+  predictor:
+    model:
+      modelFormat:
+        name: huggingface
+      args:
+        - --model_name=qwen
+        - --model_id=Qwen/Qwen2.5-0.5B-Instruct
+        - --backend=huggingface   # no GPU on kind, so use the plain transformers backend instead of vLLM
+        - --dtype=float32
+      resources:
+        requests:
+          cpu: 500m
+          memory: 2Gi
+        limits:
+          cpu: "2"
+          memory: 4Gi
