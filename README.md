@@ -45,4 +45,4 @@ Flow: install Argo CD, apply the Application, Argo CD creates `sklearn-iris` in 
 
 Server-side diff/apply is enabled so the fields KServe's webhook fills in do not show as OutOfSync.
 
-Screenshots: screenshots/7-argocd-synced.png (Synced / Healthy, resource tree), screenshots/8-argocd-gitops-change.png (auto-synced to the new commit, rolling out)
+Screenshots: screenshots/7-argocd-synced.png (Synced / Healthy, resource tree), screenshots/8-argocd-gitops-change.png (auto-synced to the new commit, rolling out), screenshots/9-argocd-2-pods.png (Synced / Healthy with 2 pods after the Git change)
