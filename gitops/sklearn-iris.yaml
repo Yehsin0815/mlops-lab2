@@ -5,7 +5,7 @@ metadata:
   name: sklearn-iris
 spec:
   predictor:
-    minReplicas: 1
+    minReplicas: 2   # changed in Git only; Argo CD rolls it out
     model:
       modelFormat:
         name: sklearn
